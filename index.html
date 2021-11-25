@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Mouse Over Test</h1>
+<p></p>
+
+
+
+
+<object  width="150" height="90" data="nica-animation.svg?global=paused" type="image/svg+xml"
+        onmouseover="playAnimation(this)" onmouseout="stopAnimation(this)"></object>
+
+<script>
+function playAnimation(obj)
+{
+    if (obj.contentDocument && obj.contentDocument.ks) {
+        var ks = obj.contentDocument.ks;
+        if (ks.timelines()[0].state() != "running") {
+            ks.timelines()[0].time(0);
+        }
+        ks.globalPlay();
+    }
+}
+function stopAnimation(obj)
+{
+    if (obj.contentDocument && obj.contentDocument.ks) {
+        var ks = obj.contentDocument.ks;
+        if (ks.globalState() != "idle" && ks.globalState() != "paused") {
+            ks.timelines()[0].time(0);
+            ks.globalPause();
+        }
+        //ks.timelines()[0].time(0);
+    }
+}
+</script>
+
+</body>
+</html>
